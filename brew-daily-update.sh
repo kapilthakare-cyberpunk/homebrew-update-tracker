@@ -8,88 +8,44 @@ HTML_FILE="$HOME/Documents/homebrew-updates.html"
 GEN_SCRIPT="$HOME/.local/bin/generate-homebrew-html.py"
 LOG_FILE="/tmp/homebrew-daily-update.log"
 TODAY=$(date +%Y-%m-%d)
-BREW="/opt/homebrew/bin/brew"
+BREW="$(command -v brew || true)"
 
 exec >>"$LOG_FILE" 2>&1
 echo "=== Homebrew Daily Update — $TODAY $(date +%H:%M:%S) ==="
+if [ -z "$BREW" ]; then echo "ERROR: Homebrew executable not found."; exit 1; fi
+mkdir -p "$(dirname "$DATA_FILE")"
+[ -f "$DATA_FILE" ] || echo "[]" > "$DATA_FILE"
 
-# Ensure data file exists
-if [ ! -f "$DATA_FILE" ]; then
-    echo "[]" > "$DATA_FILE"
-    echo "Initialized data file: $DATA_FILE"
-fi
-
-# Run brew update
 echo "Running brew update..."
 UPDATE_OUTPUT=$("$BREW" update 2>&1) || true
 echo "$UPDATE_OUTPUT"
-
-# Extract "New Formulae" block (between "==> New Formulae" and next "==>" or end)
 NEW_FORMULAE=$(echo "$UPDATE_OUTPUT" | awk '/^==> New Formulae$/{flag=1; next} /^==> /{flag=0} flag' | sed '/^[[:space:]]*$/d' || true)
-
-# Extract "New Casks" block
 NEW_CASKS=$(echo "$UPDATE_OUTPUT" | awk '/^==> New Casks$/{flag=1; next} /^==> /{flag=0} flag' | sed '/^[[:space:]]*$/d' || true)
+ALL_NEW="${NEW_FORMULAE}${NEW_FORMULAE:+$'\n'}${NEW_CASKS}"
 
-ALL_NEW=""
-[ -n "$NEW_FORMULAE" ] && ALL_NEW="${ALL_NEW}${NEW_FORMULAE}"$'\n'
-[ -n "$NEW_CASKS" ] && ALL_NEW="${ALL_NEW}${NEW_CASKS}"
+while IFS= read -r name; do
+    name=$(echo "$name" | xargs)
+    [ -z "$name" ] && continue
+    if python3 - "$DATA_FILE" "$name" <<'PY'
+import json, sys
+with open(sys.argv[1], encoding="utf-8") as f: data = json.load(f)
+sys.exit(0 if any(item.get("name") == sys.argv[2] for item in data) else 1)
+PY
+    then
+        echo "SKIP (already logged): $name"
+        continue
+    fi
+    DESC=$("$BREW" desc "$name" 2>/dev/null | head -1 | sed 's/^[^:]*: //' || true)
+    DESC=${DESC:-A Homebrew package.}
+    python3 - "$DATA_FILE" "$TODAY" "$name" "$DESC" <<'PY'
+import json, sys
+path, date, name, desc = sys.argv[1:]
+with open(path, encoding="utf-8") as f: data = json.load(f)
+data.append({"date": date, "name": name, "desc": desc, "use_case": f"Install and configure {name} for development workflows"})
+with open(path, "w", encoding="utf-8") as f: json.dump(data, f, indent=2)
+PY
+    echo "ADDED: $name — $DESC"
+done <<< "$ALL_NEW"
 
-if [ -z "$(echo "$ALL_NEW" | tr -d '[:space:]')" ]; then
-    echo "No new formulae or casks found today."
-else
-    echo "New items discovered. Processing..."
-    echo "--- New Formulae ---"
-    echo "$NEW_FORMULAE"
-    echo "--- New Casks ---"
-    echo "$NEW_CASKS"
-    echo "--------------------"
-
-    while IFS= read -r name; do
-        [ -z "$name" ] && continue
-        # Strip any leading/trailing whitespace
-        name=$(echo "$name" | xargs)
-        [ -z "$name" ] && continue
-
-        # Skip if already in the data file
-        if python3 -c "
-import json
-data = json.load(open('$DATA_FILE'))
-if any(d.get('name','') == '$name' for d in data):
-    exit(1)
-" 2>/dev/null; then
-            :
-        else
-            echo "  SKIP (already logged): $name"
-            continue
-        fi
-
-        # Get description from brew
-        DESC=$("$BREW" desc "$name" 2>/dev/null | head -1 | sed 's/^[^:]*: //' || echo "A Homebrew package.")
-        # Escape for JSON
-        DESC_JSON=$(python3 -c "import json; print(json.dumps('$DESC'));")
-
-        # Add to JSON data
-        python3 -c "
-import json
-data = json.load(open('$DATA_FILE'))
-data.append({
-    'date': '$TODAY',
-    'name': '$name',
-    'desc': $DESC_JSON,
-    'use_case': 'Install and configure $name for enhanced development workflows'
-})
-json.dump(data, open('$DATA_FILE', 'w'), indent=2)
-"
-        echo "  ADDED: $name — $DESC"
-    done <<< "$ALL_NEW"
-fi
-
-# Regenerate HTML tracker
-if [ -f "$GEN_SCRIPT" ]; then
-    python3 "$GEN_SCRIPT" "$DATA_FILE" "$HTML_FILE"
-    echo "HTML tracker regenerated: $HTML_FILE"
-else
-    echo "WARNING: HTML generator script not found at $GEN_SCRIPT"
-fi
-
+[ -f "$GEN_SCRIPT" ] && python3 "$GEN_SCRIPT" "$DATA_FILE" "$HTML_FILE"
 echo "=== Done: $TODAY $(date +%H:%M:%S) ==="
