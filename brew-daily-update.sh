@@ -26,6 +26,29 @@ ALL_NEW="${NEW_FORMULAE}${NEW_FORMULAE:+$'\n'}${NEW_CASKS}"
 while IFS= read -r name; do
     name=$(echo "$name" | xargs)
     [ -z "$name" ] && continue
+
+    # Skip garbage: lines that are warnings, errors, file paths, or dependency macros
+    if echo "$name" | grep -qE '^(Warning|Error|Please report|depends_on macos|Calling string comparison)'; then
+        echo "SKIP (not a package): $name"
+        continue
+    fi
+    # Skip file paths (e.g. /opt/homebrew/...)
+    if echo "$name" | grep -qE '^/'; then
+        echo "SKIP (file path): $name"
+        continue
+    fi
+
+    # Some taps output "name: description" - extract both parts
+    if echo "$name" | grep -q ': '; then
+        DESC="${name#*: }"
+        name="${name%%: *}"
+        echo "PARSED inline desc: $name"
+    else
+        DESC=$("$BREW" desc "$name" 2>/dev/null | head -1 | sed 's/^[^:]*: //' || true)
+        echo "PARSED via brew desc: $name"
+    fi
+    DESC=${DESC:-A Homebrew package.}
+
     if python3 - "$DATA_FILE" "$name" <<'PY'
 import json, sys
 with open(sys.argv[1], encoding="utf-8") as f: data = json.load(f)
@@ -35,8 +58,7 @@ PY
         echo "SKIP (already logged): $name"
         continue
     fi
-    DESC=$("$BREW" desc "$name" 2>/dev/null | head -1 | sed 's/^[^:]*: //' || true)
-    DESC=${DESC:-A Homebrew package.}
+
     python3 - "$DATA_FILE" "$TODAY" "$name" "$DESC" <<'PY'
 import json, sys
 path, date, name, desc = sys.argv[1:]
