@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the Homebrew Updates Tracker HTML from JSON data."""
+"""Generate the Homebrew Software Discovery Log HTML from JSON data."""
 import json
 import sys
 from datetime import datetime
@@ -33,7 +33,7 @@ def generate_html(data_file: str, output_file: str) -> None:
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Homebrew Updates Tracker</title>
+<title>New Homebrew Packages</title>
 <style>
 :root {{ color-scheme: light dark; --bg:#f9f9fb; --card:#fff; --text:#1d1d1f; --muted:#6e6e73; --accent:#0071e3; --border:#d2d2d7; }}
 @media (prefers-color-scheme:dark) {{ :root {{ --bg:#000; --card:#1d1d1f; --text:#f5f5f7; --muted:#86868b; --accent:#2997ff; --border:#424245; }} }}
@@ -48,8 +48,8 @@ table {{ width:100%; border-collapse:collapse; text-align:left; }} th,td {{ padd
 </style>
 </head>
 <body><main class="container">
-<h1>Homebrew New Software Updates</h1>
-<p class="subtitle">A daily history of new tools and apps discovered through <code>brew update</code>.</p>
+<h1>New Homebrew Packages</h1>
+<p class="subtitle">A daily log of new tools and apps discovered through <code>brew update</code>.</p>
 <p class="status">Last updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} local time; {len(entries)} entries tracked.</p>
 <div class="controls"><input id="searchInput" type="search" placeholder="Search software, descriptions, or use cases"><select id="dateFilter"><option value="all">All dates</option>{date_options}</select></div>
 <div class="table-container">{("<table><thead><tr><th>No.</th><th>Date</th><th>Software</th><th>Description</th><th>Typical use case</th></tr></thead><tbody id=\"tableBody\">" + rows_html + "</tbody></table>") if entries else '<div class="empty-state"><p>No updates recorded yet.</p><p>The first Homebrew update will populate this table.</p></div>'}</div>

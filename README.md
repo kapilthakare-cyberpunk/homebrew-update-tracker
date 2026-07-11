@@ -1,4 +1,4 @@
-# Homebrew Update Tracker
+# Homebrew Software Discovery Log
 
 A macOS utility that records newly discovered Homebrew formulae and casks, then builds a searchable HTML table you can revisit later. It is designed for people who miss a package announcement during the day and want a simple history of new tools and apps to explore.
 
