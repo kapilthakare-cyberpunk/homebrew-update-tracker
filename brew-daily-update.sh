@@ -70,4 +70,21 @@ PY
 done <<< "$ALL_NEW"
 
 [ -f "$GEN_SCRIPT" ] && python3 "$GEN_SCRIPT" "$DATA_FILE" "$HTML_FILE"
+
+# --- Git backup: push data to GitHub ---
+REPO_DIR="$HOME/Projects/homebrew-update-tracker"
+if [ -d "$REPO_DIR/.git" ]; then
+    cp "$DATA_FILE" "$REPO_DIR/homebrew-updates.json"
+    cp "$HTML_FILE" "$REPO_DIR/index.html"
+    cd "$REPO_DIR"
+    if ! git diff --quiet -- homebrew-updates.json index.html 2>/dev/null; then
+        git add homebrew-updates.json index.html
+        git commit -m "Auto-backup: $TODAY — new updates synced"
+        git push origin main 2>&1 || echo "WARNING: git push failed (will retry next run)"
+        echo "Git backup pushed to GitHub"
+    else
+        echo "No data changes to backup"
+    fi
+fi
+
 echo "=== Done: $TODAY $(date +%H:%M:%S) ==="

@@ -5,10 +5,7 @@ __MACOSX
 # Logs
 *.log
 
-# Data file (users generate their own)
-# homebrew-updates.json is included as a template, but user data should not be committed
-# Uncomment if you want to ignore your own data:
-# homebrew-updates.json
+# Data files (committed as backup via daily cron)
 
 # Python
 __pycache__/

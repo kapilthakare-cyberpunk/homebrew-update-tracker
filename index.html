@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>New Homebrew Packages</title>
+<style>
+:root { color-scheme: light dark; --bg:#f9f9fb; --card:#fff; --text:#1d1d1f; --muted:#6e6e73; --accent:#0071e3; --border:#d2d2d7; }
+@media (prefers-color-scheme:dark) { :root { --bg:#000; --card:#1d1d1f; --text:#f5f5f7; --muted:#86868b; --accent:#2997ff; --border:#424245; } }
+body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; background:var(--bg); color:var(--text); margin:0; padding:40px 20px; }
+.container { max-width:1200px; margin:auto; }
+h1 { margin:0 0 8px; } .subtitle,.status { color:var(--muted); }
+.controls { display:flex; gap:12px; margin:24px 0 20px; flex-wrap:wrap; }
+input,select { font:inherit; padding:10px 14px; border:1px solid var(--border); border-radius:8px; background:var(--card); color:var(--text); }
+input { flex:1; min-width:220px; } .table-container { overflow:auto; background:var(--card); border:1px solid var(--border); border-radius:12px; }
+table { width:100%; border-collapse:collapse; text-align:left; } th,td { padding:16px 20px; border-bottom:1px solid var(--border); vertical-align:top; } th { color:var(--muted); font-size:13px; text-transform:uppercase; } tr.hidden { display:none; } .col-sn { width:50px;color:var(--muted); } .col-date { white-space:nowrap;color:var(--muted); } .col-name { font-weight:600;color:var(--accent); }
+.empty-state { padding:60px 20px; text-align:center; color:var(--muted); }
+</style>
+</head>
+<body><main class="container">
+<h1>New Homebrew Packages</h1>
+<p class="subtitle">A daily log of new tools and apps discovered through <code>brew update</code>.</p>
+<p class="status">Last updated: 2026-07-12 03:11:58 local time; 17 entries tracked.</p>
+<div class="controls"><input id="searchInput" type="search" placeholder="Search software, descriptions, or use cases"><select id="dateFilter"><option value="all">All dates</option> <option value="2026-07-12">2026-07-12</option>
+ <option value="2026-07-11">2026-07-11</option>
+ <option value="2026-07-10">2026-07-10</option>
+</select></div>
+<div class="table-container"><table><thead><tr><th>No.</th><th>Date</th><th>Software</th><th>Description</th><th>Typical use case</th></tr></thead><tbody id="tableBody"> <tr data-date="2026-07-12">
+  <td class="col-sn">1</td>
+  <td class="col-date">2026-07-12</td>
+  <td class="col-name">esbmc</td>
+  <td class="col-desc">Efficient SMT-based context-bounded model checker for C, C++, and Python</td>
+  <td class="col-use">Install and configure esbmc: Efficient SMT-based context-bounded model checker for C, C++, and Python for development workflows</td>
+ </tr>
+ <tr data-date="2026-07-12">
+  <td class="col-sn">2</td>
+  <td class="col-date">2026-07-12</td>
+  <td class="col-name">faker</td>
+  <td class="col-desc">Python-based fake data generator</td>
+  <td class="col-use">Install and configure faker: Python-based fake data generator for development workflows</td>
+ </tr>
+ <tr data-date="2026-07-12">
+  <td class="col-sn">3</td>
+  <td class="col-date">2026-07-12</td>
+  <td class="col-name">goimapnotify</td>
+  <td class="col-desc">Execute scripts on IMAP mailbox changes using IDLE</td>
+  <td class="col-use">Install and configure goimapnotify: Execute scripts on IMAP mailbox changes using IDLE for development workflows</td>
+ </tr>
+ <tr data-date="2026-07-12">
+  <td class="col-sn">4</td>
+  <td class="col-date">2026-07-12</td>
+  <td class="col-name">madappgang/tap/madbench</td>
+  <td class="col-desc">Go-based testing harness for agentic coding tools</td>
+  <td class="col-use">Install and configure madappgang/tap/madbench for development workflows</td>
+ </tr>
+ <tr data-date="2026-07-12">
+  <td class="col-sn">5</td>
+  <td class="col-date">2026-07-12</td>
+  <td class="col-name">netcode</td>
+  <td class="col-desc">Secure client/server protocol for multiplayer games built on top of UDP</td>
+  <td class="col-use">Install and configure netcode: Secure client/server protocol for multiplayer games built on top of UDP for development workflows</td>
+ </tr>
+ <tr data-date="2026-07-12">
+  <td class="col-sn">6</td>
+  <td class="col-date">2026-07-12</td>
+  <td class="col-name">openclaw/tap/clawscan</td>
+  <td class="col-desc">Agent-skill security scanner harness for ClawHub</td>
+  <td class="col-use">Install and configure openclaw/tap/clawscan for development workflows</td>
+ </tr>
+ <tr data-date="2026-07-12">
+  <td class="col-sn">7</td>
+  <td class="col-date">2026-07-12</td>
+  <td class="col-name">opencv@4</td>
+  <td class="col-desc">Open source computer vision library</td>
+  <td class="col-use">Install and configure opencv@4: Open source computer vision library for development workflows</td>
+ </tr>
+ <tr data-date="2026-07-12">
+  <td class="col-sn">8</td>
+  <td class="col-date">2026-07-12</td>
+  <td class="col-name">perlnavigator</td>
+  <td class="col-desc">Perl language server</td>
+  <td class="col-use">Install and configure perlnavigator: Perl language server for development workflows</td>
+ </tr>
+ <tr data-date="2026-07-12">
+  <td class="col-sn">9</td>
+  <td class="col-date">2026-07-12</td>
+  <td class="col-name">rawtoaces</td>
+  <td class="col-desc">Utility for converting camera RAW image files to ACES</td>
+  <td class="col-use">Install and configure rawtoaces: Utility for converting camera RAW image files to ACES for development workflows</td>
+ </tr>
+ <tr data-date="2026-07-12">
+  <td class="col-sn">10</td>
+  <td class="col-date">2026-07-12</td>
+  <td class="col-name">reliable</td>
+  <td class="col-desc">Simple packet acknowledgement system for UDP-based protocols</td>
+  <td class="col-use">Install and configure reliable: Simple packet acknowledgement system for UDP-based protocols for development workflows</td>
+ </tr>
+ <tr data-date="2026-07-12">
+  <td class="col-sn">11</td>
+  <td class="col-date">2026-07-12</td>
+  <td class="col-name">serialize</td>
+  <td class="col-desc">Single-header bitpacking serializer for C++ aimed at game networking</td>
+  <td class="col-use">Install and configure serialize: Single-header bitpacking serializer for C++ aimed at game networking for development workflows</td>
+ </tr>
+ <tr data-date="2026-07-12">
+  <td class="col-sn">12</td>
+  <td class="col-date">2026-07-12</td>
+  <td class="col-name">soar</td>
+  <td class="col-desc">Fast, modern package manager for Static Binaries, Portable Formats and more</td>
+  <td class="col-use">Install and configure soar: Fast, modern package manager for Static Binaries, Portable Formats and more for development workflows</td>
+ </tr>
+ <tr data-date="2026-07-12">
+  <td class="col-sn">13</td>
+  <td class="col-date">2026-07-12</td>
+  <td class="col-name">trim-galore</td>
+  <td class="col-desc">Quality and adapter trimming for FastQ sequencing reads</td>
+  <td class="col-use">Install and configure trim-galore: Quality and adapter trimming for FastQ sequencing reads for development workflows</td>
+ </tr>
+ <tr data-date="2026-07-12">
+  <td class="col-sn">14</td>
+  <td class="col-date">2026-07-12</td>
+  <td class="col-name">proxybridge</td>
+  <td class="col-desc">Proxy client with per-application traffic routing rules</td>
+  <td class="col-use">Install and configure proxybridge: Proxy client with per-application traffic routing rules for development workflows</td>
+ </tr>
+ <tr data-date="2026-07-11">
+  <td class="col-sn">15</td>
+  <td class="col-date">2026-07-11</td>
+  <td class="col-name">tldr</td>
+  <td class="col-desc">Simplified, community-driven man pages that provide practical, real-world examples for command-line tools.</td>
+  <td class="col-use">Quickly looking up syntax for complex commands like tar or ffmpeg instead of reading long manual pages.</td>
+ </tr>
+ <tr data-date="2026-07-11">
+  <td class="col-sn">16</td>
+  <td class="col-date">2026-07-11</td>
+  <td class="col-name">bat</td>
+  <td class="col-desc">A cat clone with syntax highlighting, git integration, and automatic paging for cleaner file viewing in terminal.</td>
+  <td class="col-use">Reading code files directly from the command line with clear color themes and git status markers.</td>
+ </tr>
+ <tr data-date="2026-07-10">
+  <td class="col-sn">17</td>
+  <td class="col-date">2026-07-10</td>
+  <td class="col-name">htop</td>
+  <td class="col-desc">An interactive, text-based process viewer and system monitor designed to replace the standard top command.</td>
+  <td class="col-use">Monitoring CPU core loads, memory utilization, and identifying frozen or resource-heavy applications.</td>
+ </tr>
+</tbody></table></div>
+</main><script>
+const search=document.getElementById('searchInput'), date=document.getElementById('dateFilter');
+function filter() { const q=search.value.toLowerCase(), d=date.value; document.querySelectorAll('#tableBody tr').forEach(row => row.classList.toggle('hidden', !row.textContent.toLowerCase().includes(q) || (d !== 'all' && row.dataset.date !== d))); }
+search.addEventListener('input', filter); date.addEventListener('change', filter);
+</script></body></html>

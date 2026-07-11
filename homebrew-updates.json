@@ -16,5 +16,89 @@
     "name": "htop",
     "desc": "An interactive, text-based process viewer and system monitor designed to replace the standard top command.",
     "use_case": "Monitoring CPU core loads, memory utilization, and identifying frozen or resource-heavy applications."
+  },
+  {
+    "date": "2026-07-12",
+    "name": "esbmc",
+    "desc": "Efficient SMT-based context-bounded model checker for C, C++, and Python",
+    "use_case": "Install and configure esbmc: Efficient SMT-based context-bounded model checker for C, C++, and Python for development workflows"
+  },
+  {
+    "date": "2026-07-12",
+    "name": "faker",
+    "desc": "Python-based fake data generator",
+    "use_case": "Install and configure faker: Python-based fake data generator for development workflows"
+  },
+  {
+    "date": "2026-07-12",
+    "name": "goimapnotify",
+    "desc": "Execute scripts on IMAP mailbox changes using IDLE",
+    "use_case": "Install and configure goimapnotify: Execute scripts on IMAP mailbox changes using IDLE for development workflows"
+  },
+  {
+    "date": "2026-07-12",
+    "name": "madappgang/tap/madbench",
+    "desc": "Go-based testing harness for agentic coding tools",
+    "use_case": "Install and configure madappgang/tap/madbench for development workflows"
+  },
+  {
+    "date": "2026-07-12",
+    "name": "netcode",
+    "desc": "Secure client/server protocol for multiplayer games built on top of UDP",
+    "use_case": "Install and configure netcode: Secure client/server protocol for multiplayer games built on top of UDP for development workflows"
+  },
+  {
+    "date": "2026-07-12",
+    "name": "openclaw/tap/clawscan",
+    "desc": "Agent-skill security scanner harness for ClawHub",
+    "use_case": "Install and configure openclaw/tap/clawscan for development workflows"
+  },
+  {
+    "date": "2026-07-12",
+    "name": "opencv@4",
+    "desc": "Open source computer vision library",
+    "use_case": "Install and configure opencv@4: Open source computer vision library for development workflows"
+  },
+  {
+    "date": "2026-07-12",
+    "name": "perlnavigator",
+    "desc": "Perl language server",
+    "use_case": "Install and configure perlnavigator: Perl language server for development workflows"
+  },
+  {
+    "date": "2026-07-12",
+    "name": "rawtoaces",
+    "desc": "Utility for converting camera RAW image files to ACES",
+    "use_case": "Install and configure rawtoaces: Utility for converting camera RAW image files to ACES for development workflows"
+  },
+  {
+    "date": "2026-07-12",
+    "name": "reliable",
+    "desc": "Simple packet acknowledgement system for UDP-based protocols",
+    "use_case": "Install and configure reliable: Simple packet acknowledgement system for UDP-based protocols for development workflows"
+  },
+  {
+    "date": "2026-07-12",
+    "name": "serialize",
+    "desc": "Single-header bitpacking serializer for C++ aimed at game networking",
+    "use_case": "Install and configure serialize: Single-header bitpacking serializer for C++ aimed at game networking for development workflows"
+  },
+  {
+    "date": "2026-07-12",
+    "name": "soar",
+    "desc": "Fast, modern package manager for Static Binaries, Portable Formats and more",
+    "use_case": "Install and configure soar: Fast, modern package manager for Static Binaries, Portable Formats and more for development workflows"
+  },
+  {
+    "date": "2026-07-12",
+    "name": "trim-galore",
+    "desc": "Quality and adapter trimming for FastQ sequencing reads",
+    "use_case": "Install and configure trim-galore: Quality and adapter trimming for FastQ sequencing reads for development workflows"
+  },
+  {
+    "date": "2026-07-12",
+    "name": "proxybridge",
+    "desc": "Proxy client with per-application traffic routing rules",
+    "use_case": "Install and configure proxybridge: Proxy client with per-application traffic routing rules for development workflows"
   }
 ]
