@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fafafa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5f5f5;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f5a623;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e8941c;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="400" fill="url(#bg)"/>
+  <g transform="translate(600, 200)">
+    <rect x="-100" y="-60" width="200" height="120" rx="12" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+    <text x="0" y="-25" font-family="'SF Pro Display', sans-serif" font-size="20" fill="#1e293b" text-anchor="middle" font-weight="700">Homebrew</text>
+    <text x="0" y="0" font-family="'SF Pro Text', sans-serif" font-size="12" fill="#64748b" text-anchor="middle">Update Tracker</text>
+    <text x="0" y="25" font-family="'SF Mono', monospace" font-size="10" fill="#f5a623" text-anchor="middle">Discovery Log</text>
+  </g>
+  <text x="600" y="60" font-family="'SF Pro Display', sans-serif" font-size="36" fill="#1e293b" text-anchor="middle" font-weight="700">Homebrew Update Tracker</text>
+  <text x="600" y="85" font-family="'SF Pro Text', sans-serif" font-size="14" fill="#64748b" text-anchor="middle">Track newly discovered formulae and casks</text>
+  <rect x="300" y="380" width="600" height="2" rx="1" fill="url(#accent)" opacity="0.4"/>
+</svg>
